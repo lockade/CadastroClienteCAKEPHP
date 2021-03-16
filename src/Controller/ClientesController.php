@@ -16,8 +16,14 @@ class ClientesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
+    public function carregarLayout(){
+        $this->viewBuilder()->setLayout('layoutDef');
+    }
+   
+
     public function index()
     {
+        $this->carregarLayout();
         $clientes = $this->paginate($this->Clientes);
 
         
@@ -34,6 +40,7 @@ class ClientesController extends AppController
      */
     public function view($id = null)
     {
+        $this->carregarLayout();
         $cliente = $this->Clientes->get($id, [
             'contain' => [],
         ]);
@@ -47,15 +54,23 @@ class ClientesController extends AppController
      */
     public function add()
     {
+        $this->carregarLayout();
         $cliente = $this->Clientes->newEmptyEntity();
         if ($this->request->is('post')) {
-            $cliente = $this->Clientes->patchEntity($cliente, $this->request->getData());
+
+            //trabalhando a mask do telefone antes de enviar para a validação.
+            $data = $this->request->getData();
+            $regex = '/[^\d]/';
+            $data['telefone'] = preg_replace($regex, '', $data['telefone']);
+            $data['cep'] = preg_replace($regex, '', $data['cep']);
+
+            $cliente = $this->Clientes->patchEntity($cliente, $data);
             if ($this->Clientes->save($cliente)) {
-                $this->Flash->success(__('The cliente has been saved.'));
+                $this->Flash->success(__('Cliente Registrado com Sucesso!.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The cliente could not be saved. Please, try again.'));
+            $this->Flash->error(__('Cliente não registrado. verifique os campos.'));
         }
         $this->set(compact('cliente'));
     }
@@ -69,6 +84,7 @@ class ClientesController extends AppController
      */
     public function edit($id = null)
     {
+        $this->carregarLayout();
         $cliente = $this->Clientes->get($id, [
             'contain' => [],
         ]);
@@ -93,6 +109,7 @@ class ClientesController extends AppController
      */
     public function delete($id = null)
     {
+        $this->carregarLayout();
         $this->request->allowMethod(['post', 'delete']);
         $cliente = $this->Clientes->get($id);
         if ($this->Clientes->delete($cliente)) {

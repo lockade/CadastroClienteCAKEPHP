@@ -50,6 +50,8 @@ class ClientesTable extends Table
      */
     public function validationDefault(Validator $validator): Validator
     {
+
+
         $validator
             ->integer('id')
             ->allowEmptyString('id', null, 'create');
@@ -68,6 +70,7 @@ class ClientesTable extends Table
         $validator
             ->integer('telefone')
             ->maxLength('telefone', 11)
+            ->minLength('telefone', 10)
             ->requirePresence('telefone', 'create')
             ->notEmptyString('telefone');
 
@@ -83,7 +86,7 @@ class ClientesTable extends Table
             ->notEmptyString('logradouro');
 
         $validator
-            ->scalar('numero')
+            ->integer('numero')
             ->maxLength('numero', 10)
             ->requirePresence('numero', 'create')
             ->notEmptyString('numero');

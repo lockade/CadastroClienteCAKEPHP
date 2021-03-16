@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Telefone') ?></th>
-                    <td><?= h($cliente->telefone) ?></td>
+                    <td class="telefone"><?= h($cliente->telefone) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Logradouro') ?></th>
@@ -66,7 +66,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $("#telefone, #celular").mask("(00) 0000-0000");
-</script>
