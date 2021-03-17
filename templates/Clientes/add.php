@@ -24,7 +24,7 @@
                     <?= $this->Form->control('telefone', ['type' => 'text', 'class' => 'form-control telefone', 'id' => 'form_telefone', 'placeholder' =>'(00) 0000-0000', 'maxlength' => '14', 'minlength' => '13']); ?>
                   </div>
                   <div class="col">
-                    <?= $this->Form->control('cep', ['type' => 'text', 'class' => 'form-control cep', 'id' => 'form_cep', 'placeholder' =>'00000-000', 'maxlength' => '9', 'minlength' => '9', 'label' => 'CEP']); ?>
+                    <?= $this->Form->control('cep', ['type' => 'text', 'class' => 'form-control cep cep_autopreencher', 'id' => 'form_cep', 'placeholder' =>'00000-000', 'maxlength' => '9', 'minlength' => '9', 'label' => 'CEP']); ?>
                   </div>
               </div>
             </div>
@@ -51,12 +51,15 @@
                   <div class="col">
                     <?= $this->Form->control('cidade', ['type' => 'text', 'class' => 'form-control', 'id' => 'form_cidade', 'placeholder' =>'', 'maxlength' => '30', 'minlength' => '2']); ?>
                   </div>
-                  <?= $this->Form->control('estado', ['type' => 'text', 'class' => 'form-control', 'id' => 'form_estado', 'placeholder' =>'Ex: SP', 'maxlength' => '2', 'minlength' => '2']); ?>
+                  <div class="col-4">
+                    <?= $this->Form->control('estado', ['type' => 'text', 'class' => 'form-control', 'id' => 'form_estado', 'placeholder' =>'Ex: SP', 'maxlength' => '2', 'minlength' => '2']); ?>
+                  </div>
+                  
               </div>
             </div>
             <div class='d-block text-right'>
                 <?= $this->Html->link(__('Voltar'), ['action' => 'index'], ['class' => 'btn btn-secondary']) ?>
-                <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary']) ?>
+                <?= $this->Form->button(__('Adicionar'), ['class' => 'btn btn-primary']) ?>
             </div>
             
             <?= $this->Form->end() ?>

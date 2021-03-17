@@ -64,7 +64,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             $(".telefone, .celular").mask("(99) 9999-9999")
         }
     });
-    $(".telefone, .celular").on('change paste keyup', function (argument) {
+    $(".telefone, .celular").on('change paste keyup', function () {
         if($(this).val().length > 14){
             $(this).mask("(00) 00000-0000")
         }else{
@@ -72,6 +72,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         }
         
     });
+
+    
+    
 </script>
 
 </html>

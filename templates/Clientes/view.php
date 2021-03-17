@@ -5,64 +5,65 @@
  */
 ?>
 <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Cliente'), ['action' => 'edit', $cliente->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Cliente'), ['action' => 'delete', $cliente->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cliente->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Clientes'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Cliente'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
-    <div class="column-responsive column-80">
-        <div class="clientes view content">
-            <h4>Identificação: <?= h($cliente->id) ?></h4>
-            <table>
-                <tr>
-                    <th><?= __('Nome') ?></th>
-                    <td><?= h($cliente->nome) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Email') ?></th>
-                    <td><?= h($cliente->email) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Telefone') ?></th>
-                    <td class="telefone"><?= h($cliente->telefone) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Logradouro') ?></th>
-                    <td><?= h($cliente->logradouro) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Numero') ?></th>
-                    <td><?= h($cliente->numero) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Complemento') ?></th>
-                    <td><?= h($cliente->complemento) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Bairro') ?></th>
-                    <td><?= h($cliente->bairro) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Cidade') ?></th>
-                    <td><?= h($cliente->cidade) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Estado') ?></th>
-                    <td><?= h($cliente->estado) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($cliente->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Cep') ?></th>
-                    <td><?= $this->Number->format($cliente->cep) ?></td>
-                </tr>
-            </table>
+    <div class="col-12">
+        <div class="clientes form content">
+            <?= $this->Form->create($cliente, ['class' => 'container mb-5']) ?>
+            <h3 class='text-center mt-5'>Cliente</h3>
+
+            <div class="form-group">
+              <?= $this->Form->control('nome', ['class' => 'form-control', 'id' => 'form_nome', 'placeholder' =>'João da Silva', 'label' => 'Nome Completo', 'disabled' => 'true'] ); ?>
+            </div>
+
+            <div class="form-group">
+              <?= $this->Form->control('email', ['type' => 'email', 'class' => 'form-control', 'id' => 'form_email', 'placeholder' =>'email@mail.com', 'disabled' => 'true']); ?>
+            </div>
+
+            <div class="form-group">
+              <div class='row'>
+                  <div class="col">
+                    <?= $this->Form->control('telefone', ['type' => 'text', 'class' => 'form-control telefone', 'id' => 'form_telefone', 'disabled' => 'true']); ?>
+                  </div>
+                  <div class="col">
+                    <?= $this->Form->control('cep', ['type' => 'text', 'class' => 'form-control cep', 'id' => 'form_cep', 'disabled' => 'true']); ?>
+                  </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class='row'>
+                  <div class="col">
+                    <?= $this->Form->control('logradouro', ['type' => 'text', 'class' => 'form-control', 'id' => 'form_logradouro', 'disabled' => 'true']); ?>
+                  </div>
+                  <div class="col-4">
+                    <?= $this->Form->control('numero', ['type' => 'number', 'class' => 'form-control', 'id' => 'form_numero', 'disabled' => 'true']); ?>
+                  </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <?= $this->Form->control('complemento', ['type' => 'text', 'class' => 'form-control', 'id' => 'form_complemento', 'disabled' => 'true']); ?>
+            </div>
+            <div class="form-group">
+              <?= $this->Form->control('bairro', ['type' => 'text', 'class' => 'form-control', 'id' => 'form_bairro', 'disabled' => 'true']); ?>
+            </div>
+
+            <div class="form-group">
+              <div class='row'>
+                  <div class="col">
+                    <?= $this->Form->control('cidade', ['type' => 'text', 'class' => 'form-control', 'id' => 'form_cidade', 'disabled' => 'true']); ?>
+                  </div>
+                  <div class="col-4">
+                    <?= $this->Form->control('estado', ['type' => 'text', 'class' => 'form-control', 'id' => 'form_estado', 'disabled' => 'true']); ?>
+                  </div>
+                  
+              </div>
+            </div>
+            <div class='d-block text-right'>
+                <?= $this->Html->link(__('Voltar'), ['action' => 'index'], ['class' => 'btn btn-secondary']) ?>
+                <?= $this->Html->link(__('<i class="bi bi-pencil" style="font-size: 1rem; color: black;"></i> Editar'), ['action' => 'edit', $cliente->id], ['class' => 'btn btn-warning', 'escape' => false]) ?>
+            </div>
+            
+            <?= $this->Form->end() ?>
+            
         </div>
     </div>
 </div>

@@ -63,6 +63,7 @@ class ClientesController extends AppController
             $regex = '/[^\d]/';
             $data['telefone'] = preg_replace($regex, '', $data['telefone']);
             $data['cep'] = preg_replace($regex, '', $data['cep']);
+            $data['estado'] = strtoupper($data['estado']);
 
             $cliente = $this->Clientes->patchEntity($cliente, $data);
             if ($this->Clientes->save($cliente)) {
@@ -89,13 +90,20 @@ class ClientesController extends AppController
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $cliente = $this->Clientes->patchEntity($cliente, $this->request->getData());
+
+            $data = $this->request->getData();
+            $regex = '/[^\d]/';
+            $data['telefone'] = preg_replace($regex, '', $data['telefone']);
+            $data['cep'] = preg_replace($regex, '', $data['cep']);
+            $data['estado'] = strtoupper($data['estado']);
+
+            $cliente = $this->Clientes->patchEntity($cliente, $data);
             if ($this->Clientes->save($cliente)) {
-                $this->Flash->success(__('The cliente has been saved.'));
+                $this->Flash->success(__('Cliente "{0}" Salvo com Sucesso.', $data['nome']));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The cliente could not be saved. Please, try again.'));
+            $this->Flash->error(__('Cliente "{0}"" não foi salvo. Verifique os campos e tente novamente.', $data['nome']));
         }
         $this->set(compact('cliente'));
     }
@@ -113,9 +121,9 @@ class ClientesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $cliente = $this->Clientes->get($id);
         if ($this->Clientes->delete($cliente)) {
-            $this->Flash->success(__('The cliente has been deleted.'));
+            $this->Flash->success(__('O cliente {0} foi excluido com sucesso.', $cliente->nome));
         } else {
-            $this->Flash->error(__('The cliente could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O cliente "{0}" não foi excluido.', $cliente->nome));
         }
 
         return $this->redirect(['action' => 'index']);
