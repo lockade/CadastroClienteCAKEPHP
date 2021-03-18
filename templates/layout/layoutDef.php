@@ -21,7 +21,11 @@ $cakeDescription = 'CRUD Cliente';
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 
-
+    <style type="text/css" media="screen">
+        .error-message {
+            color:red;
+        }
+    </style>    
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark">

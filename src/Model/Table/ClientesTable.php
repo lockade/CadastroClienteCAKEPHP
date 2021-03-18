@@ -60,36 +60,36 @@ class ClientesTable extends Table
             ->scalar('nome')
             ->maxLength('nome', 100)
             ->requirePresence('nome', 'create')
-            ->notEmptyString('nome');
+            ->notEmptyString('nome', "Digite um nome");
 
         $validator
-            ->email('email')#validador do email
+            ->email('email', false, "Email Inválido")#validador do email
             ->requirePresence('email', 'create')
-            ->notEmptyString('email');
+            ->notEmptyString('email', 'Email Inválido');
 
         $validator
             ->integer('telefone')
             ->maxLength('telefone', 11)
             ->minLength('telefone', 10)
             ->requirePresence('telefone', 'create')
-            ->notEmptyString('telefone');
+            ->notEmptyString('telefone', "Digite um telefone");
 
         $validator
             ->integer('cep')
             ->requirePresence('cep', 'create')
-            ->notEmptyString('cep');
+            ->notEmptyString('cep', "Digite um CEP");
 
         $validator
             ->scalar('logradouro')
             ->maxLength('logradouro', 100)
             ->requirePresence('logradouro', 'create')
-            ->notEmptyString('logradouro');
+            ->notEmptyString('logradouro', "Digite um logradouro");
 
         $validator
             ->integer('numero')
             ->maxLength('numero', 10)
             ->requirePresence('numero', 'create')
-            ->notEmptyString('numero');
+            ->notEmptyString('numero', "Digite um numero");
 
         $validator
             ->scalar('complemento')
@@ -100,19 +100,19 @@ class ClientesTable extends Table
             ->scalar('bairro')
             ->maxLength('bairro', 100)
             ->requirePresence('bairro', 'create')
-            ->notEmptyString('bairro');
+            ->notEmptyString('bairro', "Digite um bairro");
 
         $validator
             ->scalar('cidade')
             ->maxLength('cidade', 30)
             ->requirePresence('cidade', 'create')
-            ->notEmptyString('cidade');
+            ->notEmptyString('cidade', "Digite uma cidade");
 
         $validator
             ->scalar('estado')
             ->maxLength('estado', 2)
             ->requirePresence('estado', 'create')
-            ->notEmptyString('estado');
+            ->notEmptyString('estado', "Digite um estado");
 
         return $validator;
     }
