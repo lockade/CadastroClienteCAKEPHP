@@ -24,6 +24,16 @@ class ClientesController extends AppController
     public function index()
     {
         $this->carregarLayout();
+
+        
+
+        $this->paginate = [
+            'limit' => 10,
+            'order' => [
+                'Clientes.id' => 'asc'
+            ]
+        ];
+
         $clientes = $this->paginate($this->Clientes);
 
         

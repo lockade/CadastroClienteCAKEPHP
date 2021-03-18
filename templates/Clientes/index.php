@@ -15,20 +15,24 @@
 
 <div class="">
     <h3 class='text-center mt-5 mb-3'><?= __('Clientes') ?></h3>
-    <div class="table-responsive ">
-        <table class="table table-sm">
+    <div class="table-responsive mx-auto text-center ">
+        <div class="table table-sm col-12 col-md-4 mx-auto">
           <tbody>
             <?php foreach ($clientes as $cliente): ?>
-            <tr>
-              <th scope="row "><button <?= h('id=button'. strval($cliente->id)) ?> type="button" class='btn btn-info col-12 text-left toggle-button' <?= h('onclick=toggle_div('. strval($cliente->id).')') ?>> <i <?= h('id=icon'.$cliente->id) ?> class="bi bi-chevron-right toggle-icon" style="font-size: 1rem; color: white;"></i> <?= h($cliente->nome) ?>
+            <button <?= h('id=button'. strval($cliente->id)) ?> type="button" class='btn btn-info col-12 text-left toggle-button my-2' <?= h('onclick=toggle_div('. strval($cliente->id).')') ?>> <i <?= h('id=icon'.$cliente->id) ?> class="bi bi-chevron-right toggle-icon" style="font-size: 1rem; color: white;"></i> <?= h($cliente->nome) ?>
               </button>
-              <div <?= h('id=div'. strval(h($cliente->id))) ?> class='row mx-auto toggle-div mt-2 mx-auto'>
-                <span class='col-12'>ID: <?= $this->Number->format($cliente->id) ?></span>
-                <span class='col-6'>Nome: <?= h($cliente->nome) ?></span> <span class='col-6'>Telefone: <span class='telefone'><?= h($cliente->telefone) ?></span></span>
-                <span class='col-12'>CEP: <span class='cep'><?= h($cliente->cep) ?></span></span>
-                <span class='col-6'>Logradouro: <?= h($cliente->logradouro) ?></span> <span class='col-6'>Numero: <span class=''><?= h($cliente->numero) ?></span></span>
-                <span class='col-6'>Bairro: <?= h($cliente->bairro) ?></span> <span class='col-6'>Complemento: <span class=''><?= h($cliente->complemento) ?></span></span>
-                <span class='col-6'>Cidade: <?= h($cliente->cidade) ?></span> <span class='col-6'>Estado: <span class=''><?= h($cliente->estado) ?></span></span>
+              <ul <?= h('id=div'. strval(h($cliente->id))) ?> class='row mx-auto toggle-div mt-2 mx-auto list-group'>
+                <li class='list-group-item'>ID: <?= $this->Number->format($cliente->id) ?></li>
+                <li class='list-group-item'>Nome: <?= h($cliente->nome) ?></li>
+                <li class='list-group-item'>Email: <?= h($cliente->email) ?></li>
+                <li class='list-group-item'>Telefone: <span class='telefone'><?= h($cliente->telefone) ?></span></li>
+                <li class='list-group-item'>CEP: <span class='cep'><?= h($cliente->cep) ?></span></li>
+                <li class='list-group-item'>Logradouro: <?= h($cliente->logradouro) ?></li>
+                <li class='list-group-item'>Numero: <?= h($cliente->numero) ?></li>
+                <li class='list-group-item'>Bairro: <?= h($cliente->bairro) ?></li>
+                <li class='list-group-item'>Complemento: <?= h($cliente->complemento) ?></li>
+                <li class='list-group-item'>Cidade: <?= h($cliente->cidade) ?></li>
+                <li class='list-group-item'>Estado: <?= h($cliente->estado) ?></li>
 
                 <div class='d-block mt-3 mx-auto'>
                     <?= $this->Html->link(__('<i class="bi bi-eye" style="font-size: 1rem; color: white;"></i> Ver'), ['action' => 'view', $cliente->id], ['class' => 'btn btn-success', 'escape' => false]) ?>
@@ -64,17 +68,34 @@
                   </div>
                 </div>
 
-              </div>
-              </th>
-            </tr>
+              </ul>
             <?php endforeach; ?>
           </tbody>
-        </table>
+        </div>
     </div>
+
+    <?php $this->Paginator->setTemplates([
+            'first' => '<a class="btn btn-outline-info" href="{{url}}">{{text}}</a></li>',
+            'last' => '<a class="btn btn-outline-info" href="{{url}}">{{text}}</a></li>',
+            'number' => '<a class="btn btn-outline-info" href="{{url}}">{{text}}</a></li>',
+            'current' => '<a class="btn btn-outline-info active" href="{{url}}">{{text}}</a></li>'
+        ]);
+
+    ?>
+    <div class='d-block mx-auto text-center container'>
+        <div class='paginator btn-group'>
+            <?= $this->Paginator->first('<i class="bi bi-chevron-double-left" style="font-size: 1rem; color: #17a2b8;"></i> Primeira', ['escape' => false]) ?>
+
+            <?= $this->Paginator->numbers(['modulus' => '2']) ?>
+
+            <?= $this->Paginator->last('<i class="bi bi-chevron-double-right" style="font-size: 1rem; color: #17a2b8;"></i> Ultima', ['escape' => false]) ?>
+        </div>
+    </div>
+    
 
     <div class="row">
       <div class="col text-center">
-        <?= $this->Html->link(__('Adicionar Cliente'), ['action' => 'add'], ['class' => 'btn btn-primary mt-2']) ?>
+        <?= $this->Html->link(__('Adicionar Cliente'), ['action' => 'add'], ['class' => 'btn btn-primary my-2']) ?>
       </div>
     </div>
     
